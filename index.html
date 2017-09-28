@@ -837,32 +837,33 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 </style>
 
-<style> @media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<style> @media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }</style></head>
+<body><div class="markdown-body">
 <p><link href="http://36.7.68.245:8008/dt-mt/static/zhisou/setCommon.css" rel="stylesheet"></p>
 
 <p><link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></p>
 
-<h1 id="toc_0">问题探讨</h1>
+<h2 id="toc_0">界面优化</h2>
 
-<h2 id="toc_1">界面优化</h2>
+<h3 id="toc_1">PC端对低分辨率笔记本支持较差</h3>
 
-<h3 id="toc_2">PC端对低分辨率笔记本支持较差</h3>
+<p>以下为维保企业后台端截图</p>
 
 <p>1280*800分辨率下</p>
 
-<h2 id="toc_3"><img src="screenshot/1280.png" alt="1280"/>￼</h2>
+<h2 id="toc_2"><img src="screenshot/1280.png" alt="1280"/>￼</h2>
 
 <p>1440*900分辨率下</p>
 
-<h2 id="toc_4"><img src="screenshot/1440.png" alt="1440"/>￼</h2>
+<h2 id="toc_3"><img src="screenshot/1440.png" alt="1440"/>￼</h2>
 
 <p>1680*1050分辨率下</p>
 
-<h2 id="toc_5"><img src="screenshot/1680.png" alt="1680"/>￼</h2>
+<h2 id="toc_4"><img src="screenshot/1680.png" alt="1680"/>￼</h2>
 
 <p>13寸普通商务本非高清屏分辨率(1366*768)</p>
 
-<p><img src="screenshot/1366.png" alt="1366"/>￼</p>
+<h2 id="toc_5"><img src="screenshot/1366.png" alt="1366"/>￼</h2>
 
 <p>根据AdDuplex统计 1366*768仍是主流分辨率(2017年2月份数据)</p>
 
@@ -874,7 +875,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 <h3 id="toc_7">PC端按钮</h3>
 
-<p>颜色太鲜艳,并且颜色没有反应按钮功能</p>
+<p>颜色太鲜艳,并且颜色没有反应按钮功能<br/>
+按钮的标签用的是<code>&lt;a&gt;</code>而不是<code>&lt;button&gt;</code></p>
+
+<p>维保后台端按钮样式</p>
 
 <div class="table_body">
 <table class="table-striped commonTableset">
@@ -893,6 +897,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </table>
 </div>
 
+<p>Bootstrap 3中按钮样式</p>
+
 <div class="x_content">
 <button type="button" class="btn btn-default">默认</button>
 <button type="button" class="btn btn-primary">主要</button>
@@ -907,9 +913,24 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 <h3 id="toc_8">IOS端菜单栏数字不能即时改变</h3>
 
-<p><video src="领取任务.mov" controls="controls" preload="none"><br/>
-</video></p>
+<p><video src="screenshot/领取任务.mov" controls="controls" preload="none"></p>
 
-</div></body>
+<h2 id="toc_9"></video></h2>
+
+<h2 id="toc_10">业务逻辑</h2>
+
+<h3 id="toc_11">任务所属关系</h3>
+
+<ul>
+<li>任务属于维保公司还是班组（目前属于班组，不能下达针对全公司的任务）</li>
+<li>如果任务属于维保公司，A班组技师领取了任务T，撤回任务T后，任务T是全公司技师都能领取还是该班组技师才能领取。（目前是只有该班组才能领取）</li>
+</ul>
+
+<h3 id="toc_12">故障维修率是否应该超过100%</h3>
+
+<p><img src="screenshot/percent.png" alt="故障维修率"/>￼</p>
+
+</div>
+</body>
 
 </html>
