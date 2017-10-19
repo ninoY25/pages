@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title>index</title>
-  <link rel="stylesheet" href="style.css">
+  <title>技师接口文档</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">  
 
   <style>
     @media print {
@@ -17,109 +18,123 @@
 </head>
 
 <body>
-  <div class="markdown-body">
-    <h1 id="toc_0">修改手机号</h1>
+  <div class="container">
+    <div class="col-md-2 toc-body">
+      <nav class="navbar navbar-fixed-top">
+        <!-- <span id="AnchorContentToggle" title="收起" style="cursor:pointer;" class="glyphicon glyphicon-minus" aria-hidden="true"></span>                   -->
+        目录
+        <div class="AnchorContent" id="AnchorContent"> </div>
+      </nav>
 
-    <h2 id="toc_1">报文接口位置</h2>
+    </div>
 
-    <p>个人中心标签中</p>
+    <div class="col-md-10 markdown-body">
+      <h1 id="toc_0">修改手机号</h1>
 
-    <h2 id="toc_2">交易路径</h2>
+      <h2 id="toc_1">报文接口位置</h2>
 
-    <p>user/userInfo/updatePhoneNumber.do</p>
+      <p>个人中心标签中</p>
 
-    <h2 id="toc_3">交易参数</h2>
+      <h2 id="toc_2">交易路径</h2>
 
-    <p>旧手机号码 [OLD_NO]<br/> 新手机号码 [NEW_NO]</p>
+      <p>user/userInfo/updatePhoneNumber.do</p>
 
-    <h2 id="toc_4">响应参数</h2>
+      <h2 id="toc_3">交易参数</h2>
 
-    <p>是否成功修改手机号码 [IS_SUCCESS] 0:失败 1:成功</p>
+      <p>旧手机号码 [OLD_NO]<br/> 新手机号码 [NEW_NO]</p>
 
-    <h1 id="toc_5">手机号码更换申请</h1>
+      <h2 id="toc_4">响应参数</h2>
 
-    <h2 id="toc_6">交易路径</h2>
+      <p>是否成功修改手机号码 [IS_SUCCESS] 0:失败 1:成功</p>
 
-    <p>common/phoneApply/numberChange.do</p>
+      <h1 id="toc_5">手机号码更换申请</h1>
 
-    <h2 id="toc_7">交易参数</h2>
+      <h2 id="toc_6">交易路径</h2>
 
-    <p>技师姓名 [JS_NAME]<br/> 身份证号码 [IDENTITY_CARD]<br/> 旧手机号码 [OLD_PHONE]<br/> 新手机号码 [NEW_PHONE]</p>
+      <p>common/phoneApply/numberChange.do</p>
 
-    <h2 id="toc_8">响应参数</h2>
+      <h2 id="toc_7">交易参数</h2>
 
-    <p>是否成功发送申请 [IS_SUCCESS] 0:失败 1:成功</p>
+      <p>技师姓名 [JS_NAME]<br/> 身份证号码 [IDENTITY_CARD]<br/> 旧手机号码 [OLD_PHONE]<br/> 新手机号码 [NEW_PHONE]</p>
 
-    <h2 id="toc_9">注意事项</h2>
+      <h2 id="toc_8">响应参数</h2>
 
-    <p>正式库上线时要添加新表<code>dt_mmp.js_phone_apply</code></p>
+      <p>是否成功发送申请 [IS_SUCCESS] 0:失败 1:成功</p>
 
-    <h1 id="toc_10">检查手机号是否存在</h1>
+      <h2 id="toc_9">注意事项</h2>
 
-    <h2 id="toc_11">交易路径</h2>
+      <p>正式库上线时要添加新表<code>dt_mmp.js_phone_apply</code></p>
 
-    <p>user/userInfo/checkIsExist.do</p>
+      <h1 id="toc_10">检查手机号是否存在</h1>
 
-    <h2 id="toc_12">交易参数</h2>
+      <h2 id="toc_11">交易路径</h2>
 
-    <p>手机号码 [LOGIN_ID]</p>
+      <p>user/userInfo/checkIsExist.do</p>
 
-    <h2 id="toc_13">响应参数</h2>
+      <h2 id="toc_12">交易参数</h2>
 
-    <p>是否存在 [IS_EXIST] 0:不存在 1:存在</p>
+      <p>手机号码 [LOGIN_ID]</p>
 
-    <h1 id="toc_14">短信登录</h1>
+      <h2 id="toc_13">响应参数</h2>
 
-    <h2 id="toc_15">交易路径</h2>
+      <p>是否存在 [IS_EXIST] 0:不存在 1:存在</p>
 
-    <p>login/smsLogin.do</p>
+      <h1 id="toc_14">短信登录</h1>
 
-    <h2 id="toc_16">交易参数</h2>
+      <h2 id="toc_15">交易路径</h2>
 
-    <p>手机号码 [LOGIN_ID]<br/> 短信应用密钥 [appKey]<br/> 技师X坐标 [X_LINE]<br/> 技师Y坐标 [Y_LINE]<br/> 技师位置信息 [POS_DESC]</p>
+      <p>login/smsLogin.do</p>
 
-    <h2 id="toc_17">响应参数</h2>
+      <h2 id="toc_16">交易参数</h2>
 
-    <p>技师id [USER_ID]<br/> 技师头像图片 [USER_PIC]<br/> 登录账号（手机号）[LOGIN_ID]
-      <br/> 用户名称 [USER_NAME]<br/> 用户性别 [USER_SEX] 0:女 1:男<br/> 用户生日 [USER_BIRTHDAY]<br/> 手机号 [MOBILE]<br/> 技师工作证编号 [USER_CERT_NO]<br/>      技师工作证照片 [USER_CERT_PIC]<br/> 工作年限 [WORK_YEAR]<br/> 等级 [JOB_LEVEL] 0:初 1:中 2:高<br/> 班组id [GP_ID]<br/> 维保企业id [SV_ID]<br/>      维保企业名称 [SV_NAME]<br/> 是否班组长 [IS_GROUP] 0:不是 1:是</p>
+      <p>手机号码 [LOGIN_ID]<br/> 短信应用密钥 [appKey]<br/> 技师X坐标 [X_LINE]<br/> 技师Y坐标 [Y_LINE]<br/> 技师位置信息 [POS_DESC]</p>
 
-    <h2 id="toc_18">注意事项</h2>
+      <h2 id="toc_17">响应参数</h2>
 
-    <p>应用密钥为shareSDK的appKey</p>
+      <p>技师id [USER_ID]<br/> 技师头像图片 [USER_PIC]<br/> 登录账号（手机号）[LOGIN_ID]
+        <br/> 用户名称 [USER_NAME]<br/> 用户性别 [USER_SEX] 0:女 1:男<br/> 用户生日 [USER_BIRTHDAY]<br/> 手机号 [MOBILE]<br/> 技师工作证编号 [USER_CERT_NO]<br/>        技师工作证照片 [USER_CERT_PIC]<br/> 工作年限 [WORK_YEAR]<br/> 等级 [JOB_LEVEL] 0:初 1:中 2:高<br/> 班组id [GP_ID]<br/> 维保企业id [SV_ID]<br/>        维保企业名称 [SV_NAME]<br/> 是否班组长 [IS_GROUP] 0:不是 1:是</p>
 
-    <h1 id="toc_19">重置密码</h1>
+      <h2 id="toc_18">注意事项</h2>
 
-    <h2 id="toc_20">交易路径</h2>
+      <p>应用密钥为shareSDK的appKey</p>
 
-    <p>user/userInfo/resetPwd.do</p>
+      <h1 id="toc_19">重置密码</h1>
 
-    <h2 id="toc_21">交易参数</h2>
+      <h2 id="toc_20">交易路径</h2>
 
-    <p>登录手机号 [LOGIN_ID]<br/> 新密码 [NEW_PWD]</p>
+      <p>user/userInfo/resetPwd.do</p>
 
-    <h2 id="toc_22">响应参数</h2>
+      <h2 id="toc_21">交易参数</h2>
 
-    <p>成功与否 [IS_SUCCESS] 0:失败 1:成功</p>
+      <p>登录手机号 [LOGIN_ID]<br/> 新密码 [NEW_PWD]</p>
 
-    <h1 id="toc_23">验证旧密码</h1>
+      <h2 id="toc_22">响应参数</h2>
 
-    <h2 id="toc_24">交易路径</h2>
+      <p>成功与否 [IS_SUCCESS] 0:失败 1:成功</p>
 
-    <p>user/userInfo/checkPwd.do</p>
+      <h1 id="toc_23">验证旧密码</h1>
 
-    <h2 id="toc_25">交易参数</h2>
+      <h2 id="toc_24">交易路径</h2>
 
-    <p>旧密码 [PWD]</p>
+      <p>user/userInfo/checkPwd.do</p>
 
-    <h2 id="toc_26">响应参数</h2>
+      <h2 id="toc_25">交易参数</h2>
 
-    <p>密码是否正确 [IS_SUCCESS] 0:错误 1:正确</p>
+      <p>旧密码 [PWD]</p>
 
-    <h2 id="toc_27">注意事项</h2>
+      <h2 id="toc_26">响应参数</h2>
 
-    <p>登录后才可使用</p>
+      <p>密码是否正确 [IS_SUCCESS] 0:错误 1:正确</p>
 
-  </div>
+      <h2 id="toc_27">注意事项</h2>
+
+      <p>登录后才可使用</p>
+
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
