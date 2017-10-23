@@ -1,1 +1,1 @@
-exclude: [resources]
+exclude: ["resources:/static/awesome/*.html"]
