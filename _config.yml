@@ -1,1 +1,1 @@
-exclude: ["static"]
+exclude: ["resources:/static"]
