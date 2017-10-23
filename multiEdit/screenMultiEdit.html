@@ -176,6 +176,7 @@
                                     $(cRow).find(":input[type='text']").each(function (i) {
                                         $(this).val("");
                                     });
+                                    $(cRow).fadeIn(500);
                                     root.appendChild(cRow);
                                 }
 
@@ -184,7 +185,7 @@
                                     var allRows = root.getElementsByTagName("tr");
                                     if (allRows.length>1){
                                         var tr = (row.parentNode).parentNode;
-                                        $(tr).remove();
+                                        $(tr).fadeOut(400, function() { $(this).remove(); });
                                     }
                                 }
                             </script>
