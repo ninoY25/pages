@@ -26,12 +26,7 @@ $(document).ready(function () {
     if (vH1Tag == null) {
         return;
     }
-
-    // $("body").prepend('<div class="toc-body">' +
-    //     '<b id="AnchorContentToggle" title="收起" style="cursor:pointer;">目录▲</b>' +
-    //     '<div class="AnchorContent" id="AnchorContent"> </div>' +
-    //     '</div>');
-
+    
     var vH1Index = 0;
     var vH2Index = 0;
     $("body").find("h1,h2,h3,h4,h5,h6").each(function (i, item) {
