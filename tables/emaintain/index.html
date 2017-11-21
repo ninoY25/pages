@@ -1,0 +1,146 @@
+<head>
+  <meta charset="utf-8">
+  <title>电子维保单表</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../markdown/style.css">
+
+  <style>
+    @media print {
+      .hljs {
+        overflow: visible;
+        word-wrap: break-word !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="col-md-2 toc-body">
+      <nav class="navbar navbar-fixed-top">
+        <!-- <span id="AnchorContentToggle" title="收起" style="cursor:pointer;" class="glyphicon glyphicon-minus" aria-hidden="true"></span>                   -->
+        目录
+        <div class="AnchorContent" id="AnchorContent"> </div>
+      </nav>
+    </div>
+
+    <div class="col-md-10 markdown-body">
+      <h1 id="toc_0">新增表</h1>
+
+      <h2 id="toc_1">task_check_position</h2>
+
+      <p>任务签到表</p>
+
+      <h3 id="toc_2">字段</h3>
+
+      <ul>
+        <li>id 主键</li>
+        <li>task_id 关联的保养任务id</li>
+        <li>check_longitude 签到经度</li>
+        <li>check_latitude 签到纬度</li>
+        <li>check_date 签到日期</li>
+        <li>check_pos_desc 签到地点</li>
+        <li>check_js 技师id</li>
+      </ul>
+
+      <h2 id="toc_3">e_maintain</h2>
+
+      <p>电子维保单信息</p>
+
+      <h3 id="toc_4">字段</h3>
+
+      <ul>
+        <li>id 主键</li>
+        <li>status 维保单状态 0-已签到未完成 1-已提交物业审核 2-任务完成</li>
+        <li>task_id 关联的保养任务id</li>
+        <li>js_signature 技师签名文件路径</li>
+        <li>helper_signature 协同人签名文件路径</li>
+        <li>wy_signature 物业签名文件路径</li>
+        <li>wy_feedback 物业评价 1-一颗星 2-两颗星 3-三颗星 4-四颗星 5-五颗星</li>
+        <li>del_flag 逻辑删除 0-显示 1-隐藏</li>
+        <li>create_date 创建时间</li>
+        <li>create_by 创建人 </li>
+        <li>update_date 更新时间</li>
+        <li>update_by 更新人</li>
+      </ul>
+
+      <h2 id="toc_5">e_maintain_detail</h2>
+
+      <p>电子维保单详细情况</p>
+
+      <h3 id="toc_6">字段</h3>
+
+      <ul>
+        <li>id 主键</li>
+        <li>e_maintain_id 关联的维保单id</li>
+        <li>e_maintain_tpl_detail_id 关联的模版详细项id</li>
+        <li>result 结果 0-通过 1-不适用 2-异常</li>
+        <li>error_content 异常说明</li>
+        <li>del_flag 逻辑删除 0-显示 1-隐藏</li>
+        <li>create_date 创建时间</li>
+        <li>create_by 创建人 </li>
+        <li>update_date 更新时间</li>
+        <li>update_by 更新人</li>
+      </ul>
+
+      <h2 id="toc_7">e_maintain_tpl</h2>
+
+      <p>电子维保单模版表</p>
+
+      <h3 id="toc_8">字段</h3>
+
+      <ul>
+        <li>id 主键</li>
+        <li>tpl_name 模版名</li>
+        <li>mt_type 保养类型 0-半月保 1-季度保 2-半年保 3-年保</li>
+        <li>dt_type 对应电梯类型 0-曳引与强制驱动电梯 1-液压驱动电梯2-杂物电梯 3-自动扶梯与自动人行道</li>
+        <li>del_flag 逻辑删除 0-显示 1-隐藏</li>
+        <li>create_date 创建时间</li>
+        <li>create_by 创建人 </li>
+        <li>update_date 更新时间</li>
+        <li>update_by 更新人</li>
+      </ul>
+
+      <h2 id="toc_9">e_maintain_tpl_detail</h2>
+
+      <p>电子维保单模版详细项目</p>
+
+      <h3 id="toc_10">字段</h3>
+
+      <ul>
+        <li>id 主键</li>
+        <li>e_maintain_tpl_id 对应模版id</li>
+        <li>sv_id 对应维保企业id 0表示为基础模版中的保养项目</li>
+        <li>content 保养项目内容</li>
+        <li>component 保养项目位置 0-机房 1-轿顶 2-井道 3-轿厢 4-底坑 5-其他</li>
+        <li>requirement 保养基本要求</li>
+        <li>sort 排序顺序</li>
+        <li>del_flag 逻辑删除 0-显示 1-隐藏</li>
+        <li>create_date 创建时间</li>
+        <li>create_by 创建人 </li>
+        <li>update_date 更新时间</li>
+        <li>update_by 更新人</li>
+      </ul>
+
+      <h1 id="toc_11">修改表</h1>
+
+      <h2 id="toc_12">dt_task</h2>
+
+      <p>电梯任务</p>
+
+      <h3 id="toc_13">添加字段</h3>
+
+      <ul>
+        <li>is_e_maintain 是否开启电子维保单 0-开启 1或其他-关闭</li>
+        <li>e_maintain_id 电子维保单id </li>
+      </ul>
+
+
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../../markdown/script.js"></script>
+</body>
+
+</html>

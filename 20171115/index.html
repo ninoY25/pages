@@ -1,0 +1,268 @@
+<head>
+    <meta charset="utf-8">
+    <title>技师接口文档</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../markdown/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>
+        @media print {
+            .hljs {
+                overflow: visible;
+                word-wrap: break-word !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-sm-2 col-md-2 toc-body">
+            <nav class="navbar navbar-fixed-top">
+                <!-- <span id="AnchorContentToggle" title="收起" style="cursor:pointer;" class="glyphicon glyphicon-minus" aria-hidden="true"></span>                   -->
+                目录
+                <div class="AnchorContent" id="AnchorContent"> </div>
+            </nav>
+        </div>
+
+        <div class="col-sm-10 col-md-10 markdown-body">
+
+            <h1 id="toc_0">电子维保单接口</h1>
+
+            <h2 id="toc_1">接口调用流程图</h2>
+
+            <h3 id="toc_2">更新模版逻辑</h3>
+
+            <pre><code class="language-sequence">技师前端-&gt;保养任务详情接口: 保养任务id
+                保养任务详情接口-&gt;技师前端: 该保养任务对应的模版最新更新时间
+                Note left of 保养任务详情接口: 接口比较指定模版的所有小项目，\n根据维保企业id取最新更新时间(唯一)
+                技师前端--&gt;更新模版接口: 模版id
+                Note right of 技师前端: 前端比较时间，如果本地更新时间小于最新更新时间
+                更新模版接口-&gt;技师前端: 指定模版的最新内容，包括所有小项
+                </code></pre>
+
+            <h3 id="toc_3">维保单逻辑</h3>
+
+            <h2 id="toc_4">新增接口</h2>
+
+            <h3 id="toc_5">任务签到</h3>
+
+            <h4 id="toc_6">交易路径</h4>
+
+            <p><code>maintain/elecMaintain/checkIn.do</code></p>
+
+            <h4 id="toc_7">交易参数</h4>
+
+            <ul>
+                <li>保养任务id [task_id]</li>
+                <li>签到经度 [check_longitude]</li>
+                <li>签到纬度 [check_latitude]</li>
+                <li>签到日期 [check_date]</li>
+                <li>签到地点 [check_pos_desc]</li>
+            </ul>
+
+            <h4 id="toc_8">响应参数</h4>
+
+            <ul>
+                <li>是否成功 [IS_SUCCESS] 0-成功 1-签到失败 2-任务状态错误</li>
+            </ul>
+
+            <h3 id="toc_9">获取模版</h3>
+
+            <h4 id="toc_10">交易路径</h4>
+
+            <p><code>maintain/elecMaintain/getTemplate.do</code></p>
+
+            <h4 id="toc_11">交易参数</h4>
+
+            <p>模版id 输入为空时返回所有模版及其细节内容</p>
+
+            <h4 id="toc_12">响应参数</h4>
+
+            <ul>
+                <li>模版list [LIST] 列表结构
+
+                    <ul>
+                        <li>模版id [tpl_id]</li>
+                        <li>模版名称 [tpl_name]</li>
+                        <li>模版项目list [tplDetailList] 列表结构
+
+                            <ul>
+                                <li>模版保养项目id [tpl_detail_id]</li>
+                                <li>保养项目内容 [content]</li>
+                                <li>保养项目位置 [component] 0-机房 1-轿顶 2-井道 3-轿厢 4-底坑 5-其他</li>
+                                <li>保养基本要求 [requirement]</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3 id="toc_13">提交电子维保单</h3>
+
+            <h4 id="toc_14">交易路径</h4>
+
+            <p><code>maintain/elecMaintain/submitEMaintain.do</code></p>
+
+            <h4 id="toc_15">交易参数</h4>
+
+            <ul>
+                <li>提交状态 [status] 0-物业未审核 1-物业已审核</li>
+                <li>保养任务id [task_id]</li>
+                <li>技师签名文件路径 [js_signature]</li>
+                <li>协同人签名文件路径 [helper_signature]</li>
+                <li>物业签名文件路径 [wy_signature]</li>
+                <li>物业评价 [wy_feedback] 1-一颗星 2-两颗星 3-三颗星 4-四颗星 5-五颗星</li>
+                <li>技师补充说明 [tk_added_desc]</li>                        
+                <li>保养项目list [tpl_detail_list]
+                    <ul>
+                        <li>关联的模版详细项id [tpl_detail_id]</li>
+                        <li>结果 [result] 0-通过 1-不适用 2-异常</li>
+                        <li>异常说明 [error_content]</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4 id="toc_16">响应参数</h4>
+
+            <ul>
+                <li>是否成功 [is_success]</li>
+                <li>处理结果 [rcv_message]</li>
+            </ul>
+
+            <p>示例JSON数据</p>
+
+            <pre><code class="JSON">
+            {
+                &quot;header&quot;: {
+                    &quot;SESSION_TOKEN&quot;: &quot;[USER_ID]&quot;,
+                    &quot;UUID&quot;: &quot;[UUID]&quot;
+                },
+                &quot;payload&quot;: {
+                    &quot;status&quot;: &quot;[物业是否审核]&quot;,
+                    &quot;task_id&quot;: &quot;[任务id]&quot;,
+                    &quot;js_signature&quot;: &quot;[技师签名路径]&quot;,
+                    &quot;helper_signature&quot;: &quot;[协同人签名路径]&quot;,
+                    &quot;wy_signature&quot;: &quot;[物业签名路径]&quot;,
+                    &quot;wy_feedback&quot;: &quot;[物业评价]&quot;,
+
+                    //List类型
+                    &quot;tpl_detail_list&quot;: [
+                        {
+                            &quot;tpl_detail_id&quot;: &quot;dd6a3dd56ae04aa88e6c37572eba9f61&quot;,
+                            &quot;result&quot;: &quot;0&quot;
+                        },
+                        {
+                            &quot;tpl_detail_id&quot;: &quot;abeebc71e499493d9f57d2b6f5046c29&quot;,
+                            &quot;result&quot;: &quot;0&quot;
+                        },
+                        {
+                            &quot;tpl_detail_id&quot;: &quot;307fc9a95e1d455faf11f8c0ffcc9690&quot;,
+                            &quot;result&quot;: &quot;1&quot;
+                        },
+                        {
+                            &quot;tpl_detail_id&quot;: &quot;97dd59d087324ea09acef95e2c443577&quot;,
+                            &quot;result&quot;: &quot;2&quot;,
+                            &quot;error_content&quot;: &quot;异常11111&quot;
+                        },
+                        {
+                            &quot;tpl_detail_id&quot;: &quot;b36d1654161445aaa977ed2e77056246&quot;,
+                            &quot; result&quot;: &quot;2&quot;,
+                            &quot;error_content&quot;: &quot;异常22222&quot;
+                        }
+                    ]
+                }
+            }
+            </code></pre>
+
+            <h2 id="toc_17">修改接口</h2>
+
+            <h3 id="toc_18">保养任务详情</h3>
+
+            <h4 id="toc_19">交易路径</h4>
+
+            <p><code>task/dtTask/queryTaskById.do</code></p>
+
+            <h4 id="toc_20">修改日期格式</h4>
+
+            <p>年检时间显示到月<br/> 其他时间显示格式实例为 2017-01-01 11:11:11</p>
+
+            <h4 id="toc_21">新增响应参数</h4>
+
+            <ul>
+                <li>签到时间 [js_check_date]</li>
+                <li>签到地点 [js_check_position]</li>
+                <li>对应模版id [tpl_id]</li>
+                <li>对应模版最新更新时间 [tpl_update_time]</li>
+                <li>是否开启电子保养单 [is_e_maintain] 0-开启 1或其他-关闭</li>
+            </ul>
+
+            <h4 id="toc_22">对应的时间轴参数</h4>
+
+            <ul>
+                <li>
+                    <p>任务生成时间 [CREATE_DATE]</p>
+                </li>
+                <li>
+                    <p>任务领取时间 [TK_GET_DATE]</p>
+                </li>
+                <li>
+                    <p>任务签到时间 [js_check_date]<br/> 任务签到地点 [js_check_position]</p>
+                </li>
+                <li>
+                    <p>任务完成(提交)时间 [TK_FINISH_DATE]</p>
+                </li>
+            </ul>
+
+            <hr/>
+
+            <h3 id="toc_23">保养任务列表</h3>
+
+            <h4 id="toc_24">交易路径</h4>
+
+            <p><code>task/dtTask/queryByTaskList.do</code></p>
+
+            <h4 id="toc_25">新增响应参数</h4>
+
+            <ul>
+                <li>签到标签 [check_flag] 0-已签到 1-未签到 其他-错误数据</li>
+                <li>是否开启电子保养单 [is_e_maintain] 0-开启 1或其他-关闭</li>
+            </ul>
+
+
+        </div>
+
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="../markdown/script.js"></script>
+        <script src="../asset/mwebjs/jquery.min.js"></script>
+        <script src="../asset/chart/all-min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                var mwebii = 0;
+                var mwebChartEleId = 'mweb-chart-ele-';
+                $('pre>code').each(function () {
+                    mwebii++;
+                    var eleiid = mwebChartEleId + mwebii;
+                    if ($(this).hasClass('language-sequence')) {
+                        var ele = $(this).addClass('nohighlight').parent();
+                        $('<div id="' + eleiid + '"></div>').insertAfter(ele);
+                        ele.hide();
+                        var diagram = Diagram.parse($(this).text());
+                        diagram.drawSVG(eleiid, {
+                            theme: 'simple'
+                        });
+                    } else if ($(this).hasClass('language-flow')) {
+                        var ele = $(this).addClass('nohighlight').parent();
+                        $('<div id="' + eleiid + '"></div>').insertAfter(ele);
+                        ele.hide();
+                        var diagram = flowchart.parse($(this).text());
+                        diagram.drawSVG(eleiid);
+                    }
+                });
+            });
+            hljs.initHighlightingOnLoad();
+        </script>
+</body>
+
+</html>
