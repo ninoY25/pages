@@ -144,7 +144,7 @@
                     &quot;helper_signature&quot;: &quot;[协同人签名路径]&quot;,
                     &quot;wy_signature&quot;: &quot;[物业签名路径]&quot;,
                     &quot;wy_feedback&quot;: &quot;[物业评价]&quot;,
-
+                    &quot;tk_added_desc&quot;:&quot;[技师补充说明]&quot;,
                     //List类型
                     &quot;tpl_detail_list&quot;: [
                         {
@@ -173,6 +173,25 @@
                 }
             }
             </code></pre>
+
+            <h3 id="toc_0">更换任务子类型</h3>
+            
+            <h4 id="toc_1">交易路径</h4>
+            
+            <p><code>maintain/elecMaintain/changeTaskSubType.do</code></p>
+            
+            <h4 id="toc_2">交易参数</h4>
+            
+            <ul>
+            <li>保养任务id [task_id]</li>
+            <li>任务子类型 [task_sub_type] 0-半月保 1-季度保 2-半年保 3-年保</li>
+            </ul>
+            
+            <h4 id="toc_3">响应参数</h4>
+            
+            <ul>
+            <li>是否成功 [is_success] 0-成功 1-失败</li>
+            </ul>            
 
             <h2 id="toc_17">修改接口</h2>
 
